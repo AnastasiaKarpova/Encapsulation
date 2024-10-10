@@ -1,4 +1,5 @@
-﻿using System;
+﻿#define DISTANCE
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,19 +59,26 @@ namespace Encapsulation
 		public double X {  get; set; } //Автосвойства
 		public double Y { get; set; }
 
-		#region MyRegion
-		//public Point(double x = 0, double y = 0)
-		//{  X = x; Y = y; Console.WriteLine("Constructor"); }
-		//public Point(Point other)
-		//{
-		//	this.X = other.X;
-		//	this.Y = other.Y;
-		//}
-		//~Point()
-		//{
-		//	Console.WriteLine("Destructor");
-		//} 
-		#endregion
+		public Point()
+		{
+			Console.WriteLine($"DefaultConstructor^:{this.GetHashCode()}");
+		}
+		public Point(double x = 0, double y = 0)
+		{ this.X = x; 
+		  this.Y = y; 
+		  Console.WriteLine($"Constructor^:{this.GetHashCode()}"); 
+		}
+		public Point(Point other)
+		{
+			this.X = other.X;
+			this.Y = other.Y;
+			Console.WriteLine($"CopyConstructor^:{this.GetHashCode()}");
+		}
+		~Point()
+		{
+			Console.WriteLine($"Destructor:\t{this.GetHashCode()}");
+		}
+
 		public double Distance(Point dist)
 		{
 			double x_distance = this.X - dist.X;
@@ -85,10 +93,26 @@ namespace Encapsulation
 			double distance = Math.Sqrt(x_distance * x_distance + y_distance * y_distance);
 			return distance;
 		}
+		public static Point operator ++(Point obj)
+		{
+			obj.X++;
+			obj.Y++;
+			return obj;
+		}
 
+		public static bool operator == (Point left, Point right)
+		{
+			return left.X == right.X && left.Y == right.Y;
+		}
+
+		public static bool operator != (Point left, Point right)
+		{
+			return !(left == right);
+		}
 		public void Print()
 		{
-			Console.WriteLine($"X = {X}\tY = {Y}");
+			Console.WriteLine($"{GetHashCode()}X = {X}\tY = {Y}");
+			//Console.WriteLine($"X = {X}\tY = {Y}");
 			//Console.WriteLine($"X = {GetX()}\tY = {GetY()}");
 		}
 		
