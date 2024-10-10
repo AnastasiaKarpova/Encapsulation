@@ -57,6 +57,35 @@ namespace Encapsulation
 
 		public double X {  get; set; } //Автосвойства
 		public double Y { get; set; }
+
+		#region MyRegion
+		//public Point(double x = 0, double y = 0)
+		//{  X = x; Y = y; Console.WriteLine("Constructor"); }
+		//public Point(Point other)
+		//{
+		//	this.X = other.X;
+		//	this.Y = other.Y;
+		//}
+		//~Point()
+		//{
+		//	Console.WriteLine("Destructor");
+		//} 
+		#endregion
+		public double Distance(Point dist)
+		{
+			double x_distance = this.X - dist.X;
+			double y_distance = this.Y - dist.Y;
+			double distance = Math.Sqrt(x_distance * x_distance + y_distance * y_distance);
+			return distance;
+		}
+		public static double distance(Point A, Point B)
+		{
+			double x_distance = A.X - B.X;
+			double y_distance = A.Y - B.Y;
+			double distance = Math.Sqrt(x_distance * x_distance + y_distance * y_distance);
+			return distance;
+		}
+
 		public void Print()
 		{
 			Console.WriteLine($"X = {X}\tY = {Y}");
@@ -64,4 +93,5 @@ namespace Encapsulation
 		}
 		
 	}
+	
 }
