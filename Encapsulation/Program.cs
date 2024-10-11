@@ -1,4 +1,4 @@
-﻿#define DISTANCE
+﻿//#define DISTANCE
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,11 +25,11 @@ namespace Encapsulation
 			//B.X = 67;
 			//B.Y = 49;
 			//B.Print();
-			Point B = new Point(A);
+			Point B = new Point(A); //CopyConstructor
 			B.Print();
 
-			Point C;
-			C = new Point (B);
+			Point C; //Это не объект, а ссылка на объект
+			C = new Point (B); //Объект можно создать только при помощи оператора new
 			C.Print();
 
 			Console.WriteLine($"Расстояние от точки 'A' до точки 'B': " + A.Distance(B));
@@ -37,7 +37,17 @@ namespace Encapsulation
 			//Console.WriteLine($"Расстояние между точками 'A' и 'B': " + distance(A, B));
 			//Console.WriteLine($"Расстояние между точками 'B' и 'A': " + distance(B, A));  
 #endif
+			Point A = new Point(2, 3);
+			Point B = new Point(7, 8);
+			Point C = new Point(A + B);
+			C.Print();
+			Point D = new Point(A - B);
+			D.Print();
 
+			for(Point i = new Point(); i.X<10; i++)
+			{
+				i.Print();
+			}
 		}
 	}
 }

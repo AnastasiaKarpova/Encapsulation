@@ -1,5 +1,4 @@
-﻿#define DISTANCE
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,10 +58,10 @@ namespace Encapsulation
 		public double X {  get; set; } //Автосвойства
 		public double Y { get; set; }
 
-		public Point()
-		{
-			Console.WriteLine($"DefaultConstructor^:{this.GetHashCode()}");
-		}
+		//public Point()
+		//{
+		//	Console.WriteLine($"DefaultConstructor^:{this.GetHashCode()}");
+		//}
 		public Point(double x = 0, double y = 0)
 		{ this.X = x; 
 		  this.Y = y; 
@@ -92,6 +91,23 @@ namespace Encapsulation
 			double y_distance = A.Y - B.Y;
 			double distance = Math.Sqrt(x_distance * x_distance + y_distance * y_distance);
 			return distance;
+		}
+		
+		public static Point operator +(Point left, Point right)
+		{
+			Point res = new Point();
+			res.X = left.X + right.X;
+			res.Y = left.Y + right.Y;
+			return res;
+		}
+
+		public static Point operator -(Point left, Point right)
+		{
+			return new Point
+				(
+				left.X - right.X,
+				left.Y - right.Y
+				);
 		}
 		public static Point operator ++(Point obj)
 		{
